@@ -1,0 +1,46 @@
+<h2 mat-dialog-title> Dados de {{ username }} </h2>
+<div mat-dialog-content>
+    <mat-progress-spinner
+    color="accent"
+    mode="indeterminate"
+    *ngIf="user == null; else content"
+    >
+    </mat-progress-spinner>
+
+    <ng-template #content>
+
+        <h2>Informações do usuário</h2>
+        
+        <div class="user">
+            <picture>
+            <img src="{{user?.avatar_url}}">
+            </picture>
+            
+            <p><span style="color: rgb(8, 74, 145); font-weight: bold">Nome do usuário: </span> <a [href]="user?.html_url" target="_blank">{{user?.name}} </a></p>
+
+            <p><span style="color: rgb(8, 74, 145); font-weight: bold">Sobre: </span> {{user?.bio}}</p>
+
+            <p><span style="color: rgb(8, 74, 145); font-weight: bold">Cidade: </span> {{user?.location}}</p>
+
+            <p><span style="color: rgb(8, 74, 145); font-weight: bold">Quantidade de seguidores: </span> {{user?.followers}}</p>
+
+            <p><span style="color: rgb(8, 74, 145); font-weight: bold">Quantidade de contas que segue: </span> {{user?.following}}</p>
+        </div>
+        
+
+
+        <h2>Repositórios</h2>
+
+        <mat-card *ngFor="let repository of repos | slice: 0:10" class="repos">
+            <p><span style="color: rgb(8, 74, 145); font-weight: bold">URL do repositório :</span> <a [href]="repository?.html_url" target="_blank">{{repository?.name}}
+            </a></p>
+            <p ><span style="color: rgb(8, 74, 145); font-weight: bold">Descrição :</span> {{repository?.description}} </p>
+            <p><span style="color: rgb(8, 74, 145); font-weight: bold">Principal Linguagem utilizada :</span> {{repository?.language}} </p>
+        </mat-card>
+
+
+
+
+    </ng-template>
+   
+</div>
